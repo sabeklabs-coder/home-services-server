@@ -1,0 +1,92 @@
+HSS — Home Services Server
+Licence d'utilisation personnelle
+Copyright (c) 2026 Sabek Labs. Tous droits reserves.
+
+CE N'EST PAS UNE LICENCE OPEN SOURCE. Le code est visible ; il n'est
+pas libre.
+
+TRADUCTION DE COURTOISIE. Seul le texte anglais de LICENSE fait foi.
+En cas de divergence, c'est lui qui s'applique.
+
+
+1. CE QUI VOUS EST ACCORDE
+
+   Vous pouvez telecharger HSS, et l'installer et l'executer sur les
+   machines de votre foyer, pour votre usage personnel et prive, sans
+   limite de duree et sans frais.
+
+   Vous pouvez en faire des copies de sauvegarde, pour ce seul usage.
+
+
+2. CE QUI NE VOUS EST PAS ACCORDE
+
+   Sans autorisation ecrite prealable du titulaire des droits, il vous
+   est interdit de :
+
+   a) modifier, adapter, traduire ou deriver HSS, en tout ou en partie,
+      ni de distribuer une version ainsi obtenue ;
+
+   b) redistribuer, publier, mettre en ligne, vendre, louer, preter,
+      sous-licencier ou ceder HSS, en tout ou en partie, modifie ou
+      non ;
+
+   c) utiliser HSS, en tout ou en partie, a des fins commerciales ou
+      professionnelles, y compris pour fournir un service a des tiers ;
+
+   d) incorporer tout ou partie de HSS dans un autre logiciel ou un
+      autre ensemble de fichiers ;
+
+   e) retirer ou alterer les mentions de droits d'auteur, de licence ou
+      de paternite.
+
+   Adapter la CONFIGURATION de votre propre installation — domaine,
+   mots de passe, services actives, vos propres fichiers — n'est pas
+   une modification au sens du present article : c'est l'usage normal
+   du logiciel.
+
+
+3. COMPOSANTS DE TIERS
+
+   HSS ne redistribue pas les logiciels qu'il installe. Il ecrit des
+   fichiers de configuration et telecharge des images de conteneurs
+   depuis leurs depots d'origine, au moment de l'installation. Chacune
+   de ces images reste soumise a la licence de ses propres auteurs.
+
+   La presente licence ne couvre que les scripts, les fichiers de
+   configuration, l'installateur et la documentation ecrits pour HSS.
+
+
+4. ABSENCE DE GARANTIE
+
+   HSS EST FOURNI « EN L'ETAT », SANS AUCUNE GARANTIE, EXPRESSE OU
+   IMPLICITE, NOTAMMENT DE QUALITE MARCHANDE, D'ADEQUATION A UN USAGE
+   PARTICULIER OU D'ABSENCE DE CONTREFACON.
+
+   HSS modifie la configuration systeme de la machine sur laquelle il
+   est installe : reseau, pare-feu, DNS, stockage, services. Vous
+   l'installez a vos risques, sur une machine dont vous etes
+   responsable, apres avoir sauvegarde ce qui compte.
+
+
+5. LIMITATION DE RESPONSABILITE
+
+   EN AUCUN CAS LE TITULAIRE DES DROITS NE POURRA ETRE TENU
+   RESPONSABLE D'UN DOMMAGE, DIRECT OU INDIRECT, Y COMPRIS LA PERTE DE
+   DONNEES, L'INTERRUPTION DE SERVICE OU LA PERTE D'EXPLOITATION,
+   RESULTANT DE L'UTILISATION OU DE L'IMPOSSIBILITE D'UTILISER HSS.
+
+
+6. FIN DE LA LICENCE
+
+   Cette licence prend fin automatiquement si vous en violez une
+   clause. Vous devez alors cesser d'utiliser HSS et en detruire
+   toutes les copies.
+
+
+7. DROIT APPLICABLE
+
+   Le droit belge s'applique.
+
+
+Une question sur un usage non prevu ici, ou une demande
+d'autorisation : ouvrez une discussion sur le depot.

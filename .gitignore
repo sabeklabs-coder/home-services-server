@@ -1,0 +1,11 @@
+# Les installateurs ne sont pas versionnes : ils sont attaches aux
+# versions publiees (releases), avec leurs empreintes SHA-256.
+*.run
+*.bin.run
+SHA256SUMS
+
+# Fichiers temporaires
+*.tmp
+*.bak
+*~
+.DS_Store

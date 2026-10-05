@@ -1,0 +1,89 @@
+HSS — Home Services Server
+Personal-Use Licence
+Copyright (c) 2026 Sabek Labs. All rights reserved.
+
+THIS IS NOT AN OPEN-SOURCE LICENCE. The source is visible; it is not
+free to reuse.
+
+A French translation is provided in LICENSE.fr.txt for convenience.
+In case of conflict, this English text governs.
+
+
+1. WHAT YOU ARE GRANTED
+
+   You may download HSS, and install and run it on machines in your
+   own household, for your personal, private use, with no time limit
+   and at no cost.
+
+   You may make backup copies, for that use only.
+
+
+2. WHAT YOU ARE NOT GRANTED
+
+   Without the prior written permission of the copyright holder, you
+   may not:
+
+   a) modify, adapt, translate or create derivative works of HSS, in
+      whole or in part, nor distribute anything so obtained;
+
+   b) redistribute, publish, upload, sell, rent, lend, sublicense or
+      assign HSS, in whole or in part, modified or not;
+
+   c) use HSS, in whole or in part, for commercial or professional
+      purposes, including to provide a service to third parties;
+
+   d) incorporate any part of HSS into other software or into another
+      collection of files;
+
+   e) remove or alter any copyright, licence or attribution notice.
+
+   Adapting the CONFIGURATION of your own installation — domain,
+   passwords, which services you enable, your own files — is not a
+   modification under this clause. That is ordinary use of the
+   software.
+
+
+3. THIRD-PARTY COMPONENTS
+
+   HSS does not redistribute the software it installs. It writes
+   configuration files and pulls container images from their own
+   registries at install time. Each image remains subject to the
+   licence of its own authors.
+
+   This licence covers only the scripts, configuration files,
+   installer and documentation written for HSS.
+
+
+4. NO WARRANTY
+
+   HSS IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+   NONINFRINGEMENT.
+
+   HSS changes the system configuration of the machine it is installed
+   on: network, firewall, DNS, storage, services. You install it at
+   your own risk, on a machine you are responsible for, after backing
+   up whatever matters to you.
+
+
+5. LIMITATION OF LIABILITY
+
+   IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY DAMAGE,
+   DIRECT OR INDIRECT, INCLUDING LOSS OF DATA, SERVICE INTERRUPTION OR
+   LOSS OF BUSINESS, ARISING FROM THE USE OF OR INABILITY TO USE HSS.
+
+
+6. TERMINATION
+
+   This licence terminates automatically if you breach any of its
+   terms. You must then stop using HSS and destroy all copies.
+
+
+7. GOVERNING LAW
+
+   Belgian law applies.
+
+
+For a use not covered here, or to request permission, open a
+discussion on the repository.
