@@ -127,6 +127,12 @@ Ce n'est pas un logiciel libre : le code est visible, il n'est pas
 réutilisable. Vous pouvez l'installer et l'utiliser chez vous, sans
 frais et sans limite de durée.
 
+**Cela pourra s'ouvrir plus tard.** Les contributions et les
+modifications sont fermées pour l'instant parce que le projet n'est pas
+assez testé pour les absorber — pas par principe. Ouvrir un projet
+qu'on ne sait pas encore tester, c'est se condamner à ne plus
+distinguer ses propres bugs de ceux des autres.
+
 ---
 
 ## Sécurité
@@ -144,8 +150,11 @@ restent dans un dépôt privé.
 
 Ce qui manque avant la première version publiée :
 
+- [x] le profil de construction public, piloté par un manifeste qui
+      déclare, chemin par chemin, ce qui appartient à l'utilisateur — et
+      un garde-fou qui **abandonne** la construction si un seul de ces
+      chemins s'y retrouve
 - [ ] l'archive `hss-user.tar` et sa restauration
-- [ ] le profil de construction public, piloté par le manifeste
 - [ ] la recette « un inconnu installe HSS », sur Fedora puis sur arm64
 - [ ] la version `v3.3`, avec les `.run` et leurs empreintes SHA-256
 

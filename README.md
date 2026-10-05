@@ -126,6 +126,11 @@ See [LICENSE](LICENSE) (French: [LICENSE.fr.txt](LICENSE.fr.txt)).
 This is not free software: the source is visible, it is not reusable.
 You may install and run it at home, at no cost and with no time limit.
 
+**This may open up later.** Contributions and modifications are closed
+for now because the project is not tested enough to absorb them — not
+as a matter of principle. Opening a project you cannot yet test is how
+you end up unable to tell your own bugs from someone else's.
+
 ---
 
 ## Security
@@ -142,8 +147,10 @@ happens elsewhere: session notes, plans and history stay private.
 
 Before the first published release:
 
+- [x] the public build profile, driven by a manifest that declares, path
+      by path, what belongs to the user — and a guard-rail that aborts the
+      build if a single one of those paths would ship
 - [ ] the `hss-user.tar` archive and its restore path
-- [ ] the public build profile, driven by the manifest
 - [ ] the "a stranger installs HSS" acceptance run, on Fedora then on arm64
 - [ ] release `v3.3`, with the `.run` files and their SHA-256 checksums
 
