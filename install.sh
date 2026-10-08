@@ -40,16 +40,20 @@ printf '\n%s  HSS — Home Services Server%s\n' "$G" "$Z"
 printf '%s  installation depuis %s%s\n\n' "$D" "$DEPOT" "$Z"
 
 # ── 1. L'architecture ──────────────────────────────────────────────
-# Le nom publie n'est pas celui que donne « uname -m » : un .run est
-# nomme par l'architecture Debian, parce que c'est celle des images de
-# conteneurs qu'il ira chercher.
+# On la detecte pour le DIRE, pas pour choisir un fichier : depuis le
+# 08/10/2026 il n'y a qu'un installateur, et il est UNIVERSEL. Il porte
+# gum et les paquets hors-ligne pour les deux architectures, et choisit
+# les bons une fois sur la machine (scripts/lib/ui.sh l. 149 et
+# scripts/hss-deploy.sh l. 1323).
+#
+# Le controle reste utile : il arrete tout de suite sur un materiel que
+# HSS ne gere pas, plutot qu'apres avoir telecharge 182 Mo pour rien.
 case "$(uname -m)" in
-    x86_64|amd64)   ARCH=amd64 ;;
-    aarch64|arm64)  ARCH=arm64 ;;
+    x86_64|amd64|aarch64|arm64) : ;;
     *) mort "Architecture non prise en charge : $(uname -m)
-     HSS est publie pour x86_64 (amd64) et aarch64 (arm64)." ;;
+     HSS fonctionne sur x86_64 (amd64) et aarch64 (arm64)." ;;
 esac
-ok "architecture : $(uname -m) → $ARCH"
+ok "architecture : $(uname -m) — l'installateur est universel"
 
 # ── 2. Les outils ─────────────────────────────────────────────────
 for o in curl tar; do
@@ -82,23 +86,23 @@ if command -v python3 >/dev/null 2>&1; then
     lire() { printf '%s' "$REPONSE" | python3 -c '
 import json, sys
 d = json.load(sys.stdin)
-quoi, arch = sys.argv[1], sys.argv[2]
+quoi = sys.argv[1]
 if quoi == "tag":
     print(d.get("tag_name", ""))
 else:
-    suffixe = "-" + arch + "-public.run" if quoi == "run" else quoi
+    suffixe = "-public.run" if quoi == "run" else quoi
     for a in d.get("assets", []):
         n = a.get("name", "")
         if (quoi == "run" and n.endswith(suffixe)) or (quoi != "run" and n == suffixe):
             print(a.get("browser_download_url", "")); break
-' "$1" "$ARCH" 2>/dev/null; }
+' "$1" 2>/dev/null; }
 else
     lire() {
         case "$1" in
           tag) printf '%s' "$REPONSE" | tr ',' '\n' | grep -m1 '"tag_name"' \
                  | sed 's/.*"tag_name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/' ;;
           run) printf '%s' "$REPONSE" | tr ',' '\n' | grep -m1 -o \
-                 "https://[^\"]*-${ARCH}-public\.run" ;;
+                 "https://[^\"]*-public\.run" ;;
           *)   printf '%s' "$REPONSE" | tr ',' '\n' | grep -m1 -o \
                  "https://[^\"]*/$1" ;;
         esac
@@ -110,8 +114,12 @@ URL_RUN="$(lire run)"
 URL_SUMS="$(lire SHA256SUMS)"
 
 [ -n "$VERSION" ] || mort "Reponse de GitHub illisible. Reessayez dans un moment."
-[ -n "$URL_RUN" ]  || mort "La version $VERSION ne publie pas d'installateur pour $ARCH.
-     Les actifs attendus se nomment « hss-<version>-$ARCH-public.run »."
+[ -n "$URL_RUN" ]  || mort "La version $VERSION ne publie aucun installateur.
+     L'actif attendu se nomme « hss-<version>-public.run ».
+
+     Il est UNIVERSEL : il porte les deux architectures, et choisit la
+     bonne a l'installation. Il n'y a donc pas de fichier par
+     architecture a chercher."
 ok "version : $VERSION"
 
 # ── 4. Telechargement dans un dossier temporaire ──────────────────
