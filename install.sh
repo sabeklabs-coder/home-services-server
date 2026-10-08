@@ -179,7 +179,19 @@ fi
 # entree standard est le script lui-meme, et toute question recevrait
 # du code source en reponse. On lui rebranche donc le terminal — et
 # s'il n'y en a pas, on s'arrete en disant quoi taper.
-if [ -r /dev/tty ]; then
+# ── Y a-t-il VRAIMENT un terminal ? ───────────────────────────────
+#  « [ -r /dev/tty ] » regarde les DROITS du fichier special, pas
+#  l'existence d'un terminal de controle. Sur une machine sans terminal
+#  — cron, unite systemd, « ssh sans -t », runner CI — le noeud
+#  /dev/tty existe et est lisible, donc le test repondait OUI, et la
+#  ligne suivante lancait « "$RUN" < /dev/tty » qui echoue aussitot sur
+#  « No such device or address ». L'utilisateur recevait ce message-la
+#  au lieu du message utile place plus bas.
+#
+#  Le seul test qui dit la verite est d'OUVRIR le fichier.
+#  Verifie le 08/10/2026 : « [ -r /dev/tty ] » repond oui la ou
+#  « ( : < /dev/tty ) » echoue.
+if ( : < /dev/tty ) 2>/dev/null; then
     printf '\n%s  L'"'"'installateur prend la main. Il demandera sudo.%s\n\n' "$D" "$Z"
     # Le .run est conserve : trap desarme, dossier temporaire garde.
     trap - EXIT INT TERM
