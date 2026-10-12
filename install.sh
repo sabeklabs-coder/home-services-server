@@ -90,10 +90,19 @@ quoi = sys.argv[1]
 if quoi == "tag":
     print(d.get("tag_name", ""))
 else:
-    suffixe = "-public.run" if quoi == "run" else quoi
+    # DEUX FORMES DE NOM, et il faut les deux.
+    #   ancienne  hss-3.2-public.run                      (<= 12/10/2026)
+    #   nouvelle  hss-public-run-installer-v3.2-build….run
+    # Ne garder que la nouvelle rendrait introuvables les versions
+    # deja publiees : GitHub sert les anciens actifs tels quels, et
+    # un utilisateur qui installe une version anterieure lirait
+    # « cette version ne publie aucun installateur » devant un
+    # fichier parfaitement present.
+    def est_installeur(n):
+        return n.endswith(".run") and ("public" in n)
     for a in d.get("assets", []):
         n = a.get("name", "")
-        if (quoi == "run" and n.endswith(suffixe)) or (quoi != "run" and n == suffixe):
+        if (quoi == "run" and est_installeur(n)) or (quoi != "run" and n == quoi):
             print(a.get("browser_download_url", "")); break
 ' "$1" 2>/dev/null; }
 else
@@ -101,8 +110,11 @@ else
         case "$1" in
           tag) printf '%s' "$REPONSE" | tr ',' '\n' | grep -m1 '"tag_name"' \
                  | sed 's/.*"tag_name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/' ;;
+          # Meme regle que le selecteur python : « public » dans le
+          # nom et « .run » a la fin. Couvre « hss-3.2-public.run »
+          # comme « hss-public-run-installer-v3.2-build….run ».
           run) printf '%s' "$REPONSE" | tr ',' '\n' | grep -m1 -o \
-                 "https://[^\"]*-public\.run" ;;
+                 "https://[^\"]*public[^\"]*\.run" ;;
           *)   printf '%s' "$REPONSE" | tr ',' '\n' | grep -m1 -o \
                  "https://[^\"]*/$1" ;;
         esac
@@ -115,7 +127,7 @@ URL_SUMS="$(lire SHA256SUMS)"
 
 [ -n "$VERSION" ] || mort "Reponse de GitHub illisible. Reessayez dans un moment."
 [ -n "$URL_RUN" ]  || mort "La version $VERSION ne publie aucun installateur.
-     L'actif attendu se nomme « hss-<version>-public.run ».
+     L'actif attendu porte « public » dans son nom et finit par « .run »\n     (hss-public-run-installer-v<version>-build<date>.run).
 
      Il est UNIVERSEL : il porte les deux architectures, et choisit la
      bonne a l'installation. Il n'y a donc pas de fichier par
